@@ -1,0 +1,5 @@
+regex
+(\w|\s|\D)*(open|start|click)(\w|\s|\D)*(camera|pic|picture)(\w|\s|\D)*
+(\w|\s|\D)*(open|send|compose|write)(\w|\s|\D)*(mail|email)(\w|\s|\D)*
+(\w|\s|\D)*(open|start)(\w|\s|\D)*(browser|web browser)(\w|\s|\D)*
+(\w|\s|\D)*(open|start|play)(\w|\s|\D)*(music|spotify|groove)(\w|\s|\D)*
