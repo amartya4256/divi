@@ -17,7 +17,7 @@ nmt_chatbot("First response")
 
 engine= pyttsx3.init('sapi5')
 voices= engine.getProperty('voices')
-engine.setProperty('voices',voices[0].id)
+engine.setProperty('voices',voices[1].id)
 def speak(audio):
     engine.say(audio)                               #Speaks for the AI
     engine.runAndWait()
@@ -69,7 +69,7 @@ def decide():
         if response is None:
             reply = nmt_chatbot(query)
             print(reply)
-            speak(reply)
+            speak(reply.split("::")[0])
 
 if __name__ == "__main__":
     while True:
