@@ -78,10 +78,15 @@ def decide_type(query):
 
                 ############################link to server########################
         if response is None:
-            reply = requests.post("http://192.168.137.1:8000/chatbot/",data= query)
+            try:
+                reply = requests.post("http://192.168.43.204:8000/chatbot/",data= query , timeout= 2.5)
+                reply = reply.text
+            except:
+                reply = "The Internet and I are not talking right now."
             #print(reply)
             #speak(reply)
-            return reply.text
+            return reply
+    return "The Internet and I are not talking right now."
 
 def decide_speak():
     query = takecommand()
@@ -101,13 +106,19 @@ def decide_speak():
                     return response
         ###################link to server###########################
         if response is None:
-            reply = requests.post("http://192.168.137.1:8000/chatbot/", data=query)
-            # print(reply)
-            # speak(reply)
-            return reply.text
+            try:
+                reply = requests.post("http://192.168.43.204:8000/chatbot/", data=query , timeout=2.5)
+                reply = reply.text
+            except:
+                reply = "The Internet and I are not talking right now."
+                # print(reply)
+                # speak(reply)
+            reply = {'reply' : reply, 'request' : query}
+            return reply
+    return "The Internet and I are not talking right now."
 
 #if __name__ == "__main__":
 
 
-    #auto_listen()
+#auto_listen()
 #decide_speak()
