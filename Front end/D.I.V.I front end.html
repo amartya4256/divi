@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D.I.V.I</title>
+    <meta name="D.I.V.I" value="notranslate">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body style = "background-color : red">
+
+  <div id="chatbox" align="middle">
+      <div class="scrollbar" id="scroller" align = "middle">
+
+
+        <div class="container">
+  <img src="/w3images/bandmember.jpg" alt="Avatar">
+  <p>Hello. How are you today?</p>
+  <span class="time-right">11:00</span>
+</div>
+
+
+
+
+
+  </div>
+
+       <div id="inp" align = "middle">
+      <input type="text" align="middle" class="inputbar" placeholder="Text"  onkeypress="enterlistener(this)" >
+      &nbsp;
+      <input type="image" class="search" src = 'search.png' onclick="speakdata()">
+           <br/><br/>
+       </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script language="javascript">
+    console.log("mad");
+
+    function senddata(){
+         var msg = new SpeechSynthesisUtterance();
+  var voices = window.speechSynthesis.getVoices();
+  msg.voice = voices[0];
+  msg.voiceURI = "native";
+  msg.volume = 2;
+  msg.rate = 1;
+  msg.pitch = 0.8;
+  msg.text = '';
+  msg.lang = 'en-US';
+        var x = new XMLHttpRequest();
+        x.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("scroller").innerHTML +=
+             `<div class="container">
+  <img src="/w3images/bandmember.jpg" alt="Avatar">
+  <p>` + this.responseText + `</p>
+  <span class="time-right">11:00</span>
+</div>`;
+    scroller(document.getElementById("scroller"));
+
+
+            msg.text = this.responseText;
+            speechSynthesis.speak(msg);
+       }}
+        x.open("POST","http://127.0.0.1:5000/type");
+        x.send(document.getElementsByClassName("inputbar")[0].value);
+        console.log(document.getElementsByClassName("inputbar")[0].value);
+    }
+
+
+
+
+    function speakdata(){
+         var msg = new SpeechSynthesisUtterance();
+  var voices = window.speechSynthesis.getVoices();
+  msg.voice = voices[0];
+  msg.voiceURI = "native";
+  msg.volume = 2;
+  msg.rate = 1;
+  msg.pitch = 0.8;
+  msg.text = '';
+  msg.lang = 'en-US';
+        var x = new XMLHttpRequest();
+        x.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let obj = JSON.parse(this.responseText);
+
+            document.getElementById("scroller").innerHTML += `<div class='container darker'>
+  <img src='/w3images/avatar_g2.jpg' alt='Avatar' class='right'>
+  <p>` + obj['request'] +  `</p>
+  <span class='time-left'>11:05</span></div>`;
+
+            document.getElementById("scroller").innerHTML +=
+             `<div class="container">
+  <img src="/w3images/bandmember.jpg" alt="Avatar">
+  <p>` + obj['reply'] + `</p>
+  <span class="time-right">11:00</span>
+</div>`;
+    scroller(document.getElementById("scroller"));
+            msg.text = obj['reply'];
+            speechSynthesis.speak(msg);
+       }}
+        x.open("POST","http://127.0.0.1:5000/speak");
+        x.send();
+    }
+    function enterlistener(query){
+        if(event.key === 'Enter'){
+
+        document.getElementById("scroller").innerHTML += `<div class='container darker'>
+  <img src='/w3images/avatar_g2.jpg' alt='Avatar' class='right'>
+  <p>` + document.getElementsByClassName("inputbar")[0].value +  `</p>
+  <span class='time-left'>11:05</span></div>`;
+  scroller(document.getElementById("scroller"));
+  console.log(document.getElementById("scroller").value);
+
+
+
+        senddata();
+    document.getElementsByClassName("inputbar")[0].value = '';
+    }
+    }
+
+    function scroller(elem){
+        elem.scrollTop = elem.scrollHeight;
+    }
+    </script>
+
+
+</body>
+</html>
