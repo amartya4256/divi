@@ -1,0 +1,138 @@
+#inp{
+position : fixed;
+width: 99%;
+bottom : 5%;
+left : 0px;
+background-color: red;
+height: 7%;
+
+}
+
+
+
+#scroller::-webkit-scrollbar-track
+{
+
+	background-color: red;
+}
+
+#scroller::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: red;
+}
+
+#scroller::-webkit-scrollbar-thumb
+{
+	background-color: black;
+	opacity : 0.5;
+	border-radius: 50%;
+
+}
+
+
+.scrollbar
+{
+    position : fixed;
+    left : 29%;
+    !margin: 0 auto;
+	!margin-left: auto;
+	float: center;
+	height: 90%;
+	width: 40%;
+	background: red;
+	overflow-y: scroll;
+	margin-bottom: 20%;
+	max-height : 80%;
+}
+
+
+#chatbox{
+   position : fixed;
+    width: 99%;
+    top : 30px;
+
+    float : left;
+
+
+
+}
+.inputbar{
+    border-radius : 25px;
+    border-width : 2px;
+    border-color : #ff1111;
+    width : 40%;
+    bottom : 10px;
+}
+
+.search{
+    decoration : none;
+
+    border-radius : 100px;
+    display: inline-block;
+    text-decoration: none;
+    height:25px;
+    width : 15px
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Chat containers */
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
