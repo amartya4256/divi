@@ -10,9 +10,15 @@
 
 
 </head>
-<body style = "background-color : red">
+<body>
 
+    <div id="all">
+        <label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
   <div id="chatbox" align="middle">
+
       <div class="scrollbar" id="scroller" align = "middle">
 
 
@@ -35,15 +41,7 @@
 
 </div>
 
-
-
-
-
-
-
-
-
-
+    </div>
 
     <script language="javascript">
     console.log("mad");
@@ -58,14 +56,16 @@
   msg.pitch = 0.8;
   msg.text = '';
   msg.lang = 'en-US';
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() ;
         var x = new XMLHttpRequest();
         x.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("scroller").innerHTML +=
              `<div class="container">
-  <img src="/w3images/bandmember.jpg" alt="Avatar">
+  <img src="—Pngtree—simple round frame tech element_3687986.png" alt="Avatar">
   <p>` + this.responseText + `</p>
-  <span class="time-right">11:00</span>
+  <span class="time-right">` +time+ `</span>
 </div>`;
     scroller(document.getElementById("scroller"));
 
@@ -91,24 +91,27 @@
   msg.pitch = 0.8;
   msg.text = '';
   msg.lang = 'en-US';
+       var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() ;
         var x = new XMLHttpRequest();
         x.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let obj = JSON.parse(this.responseText);
+            console.log(obj);
 
 
             if (obj['request'] != undefined)  {
             document.getElementById("scroller").innerHTML += `<div class='container darker'>
-  <img src='/w3images/avatar_g2.jpg' alt='Avatar' class='right'>
+  <img src="icons8-user-96.png" alt="Avatar" class='right'>
   <p>` + obj['request'] +  `</p>
-  <span class='time-left'>11:05</span></div>`;
+  <span class='time-left'>` +time+ `</span></div>`;
   }
 
             document.getElementById("scroller").innerHTML +=
              `<div class="container">
-  <img src="/w3images/bandmember.jpg" alt="Avatar">
+  <img src="—Pngtree—simple round frame tech element_3687986.png" alt="Avatar">
   <p>` + obj['reply'] + `</p>
-  <span class="time-right">11:00</span>
+  <span class="time-right">` +time+ `</span>
 </div>`;
 
 
@@ -121,12 +124,14 @@
         x.send();
     }
     function enterlistener(query){
+        var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() ;
         if(event.key === 'Enter'){
 
         document.getElementById("scroller").innerHTML += `<div class='container darker'>
-  <img src='/w3images/avatar_g2.jpg' alt='Avatar' class='right'>
+  <img src='icons8-user-96.png' alt='Avatar' class='right'>
   <p>` + document.getElementsByClassName("inputbar")[0].value +  `</p>
-  <span class='time-left'>11:05</span></div>`;
+  <span class='time-left'>` +time+ `</span></div>`;
   scroller(document.getElementById("scroller"));
   console.log(document.getElementById("scroller").value);
 
@@ -141,6 +146,9 @@
         elem.scrollTop = elem.scrollHeight;
     }
     </script>
+
+
+
 
 
 </body>

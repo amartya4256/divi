@@ -9,7 +9,7 @@ height: 7%;
 }
 
 
-
+!background-image: linear-gradient(to right ,#f07524,#610000,#000336);
 #scroller::-webkit-scrollbar-track
 {
 
@@ -40,7 +40,7 @@ height: 7%;
 	float: center;
 	height: 90%;
 	width: 40%;
-	background: red;
+	!background: red;
 	overflow-y: scroll;
 	margin-bottom: 20%;
 	max-height : 80%;
@@ -89,17 +89,29 @@ height: 7%;
 
 /* Chat containers */
 .container {
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
-  border-radius: 5px;
+  word-wrap: break-word;
+  !border: 2px solid #dedede;
+  !background-color: #f1f1f1;
+  border-radius: 60px;
   padding: 10px;
   margin: 10px 0;
+  background-image: linear-gradient(to left , rgba(240,167,104,0.4), rgba(218,224,36, 0.8));
 }
 
 /* Darker chat container */
 .darker {
-  border-color: #ccc;
-  background-color: #ddd;
+  word-wrap: break-word;
+  !border-color: #ccc;
+  !background-color: #ddd;
+  background-image: linear-gradient(to right , rgba(250,238,227,0.4), rgba(112,112,112, 0.7));
+
+}
+
+#all{
+    background-color : #ddd;
+    overflow: hidden;
+    height:100%;
+  background-image: linear-gradient(to right , rgba(250,238,227,0.4), rgba(112,112,112, 0.7));
 }
 
 /* Clear floats */
@@ -107,6 +119,9 @@ height: 7%;
   content: "";
   clear: both;
   display: table;
+  opacity: 0.7;
+  filter: alpha(opacity=100);
+
 }
 
 /* Style images */
@@ -116,6 +131,9 @@ height: 7%;
   width: 100%;
   margin-right: 20px;
   border-radius: 50%;
+  opacity: 0.8;
+  filter: alpha(opacity=60);
+
 }
 
 /* Style the right image */
@@ -123,16 +141,110 @@ height: 7%;
   float: right;
   margin-left: 20px;
   margin-right:0;
+  opacity: 0.8;
+  filter: alpha(opacity=60);
+
 }
 
 /* Style time text */
 .time-right {
-  float: right;
+  float: auto;
   color: #aaa;
+  opacity: 0.8;
+  filter: alpha(opacity=60);
 }
 
 /* Style time text */
 .time-left {
-  float: left;
+  float: auto;
   color: #999;
+  opacity: 0.8;
+  filter: alpha(opacity=60);
+}
+
+
+.opac {
+  background-image: linear-gradient(to left , rgba(240,167,104,0.4), rgba(218,224,36, 0.8));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* The switch - the box around the slider */
+.switch {
+  position: absolute;
+  display: inline-block;
+  width: 50px;
+  height: 22px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: black;
+  -webkit-transition: .4s;
+  transition: .4s;
+  opacity: 0.6;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20%;
+}
+
+.slider.round:before {
+  border-radius: 40%;
 }
