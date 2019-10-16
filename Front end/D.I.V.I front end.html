@@ -10,7 +10,7 @@
 
 
 </head>
-<body>
+<body style = "background-color : red">
 
     <div id="all">
         <label class="switch">
@@ -43,108 +43,8 @@
 
     </div>
 
-    <script language="javascript">
-    console.log("mad");
+    <script language="javascript" src = "script.js">
 
-    function senddata(){
-         var msg = new SpeechSynthesisUtterance();
-  var voices = window.speechSynthesis.getVoices();
-  msg.voice = voices[0];
-  msg.voiceURI = "native";
-  msg.volume = 2;
-  msg.rate = 1;
-  msg.pitch = 0.8;
-  msg.text = '';
-  msg.lang = 'en-US';
-    var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes() ;
-        var x = new XMLHttpRequest();
-        x.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("scroller").innerHTML +=
-             `<div class="container">
-  <img src="—Pngtree—simple round frame tech element_3687986.png" alt="Avatar">
-  <p>` + this.responseText + `</p>
-  <span class="time-right">` +time+ `</span>
-</div>`;
-    scroller(document.getElementById("scroller"));
-
-
-            msg.text = this.responseText;
-            speechSynthesis.speak(msg);
-       }}
-        x.open("POST","http://127.0.0.1:5000/type");
-        x.send(document.getElementsByClassName("inputbar")[0].value);
-        console.log(document.getElementsByClassName("inputbar")[0].value);
-    }
-
-
-
-
-    function speakdata(){
-         var msg = new SpeechSynthesisUtterance();
-  var voices = window.speechSynthesis.getVoices();
-  msg.voice = voices[0];
-  msg.voiceURI = "native";
-  msg.volume = 2;
-  msg.rate = 1;
-  msg.pitch = 0.8;
-  msg.text = '';
-  msg.lang = 'en-US';
-       var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes() ;
-        var x = new XMLHttpRequest();
-        x.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let obj = JSON.parse(this.responseText);
-            console.log(obj);
-
-
-            if (obj['request'] != undefined)  {
-            document.getElementById("scroller").innerHTML += `<div class='container darker'>
-  <img src="icons8-user-96.png" alt="Avatar" class='right'>
-  <p>` + obj['request'] +  `</p>
-  <span class='time-left'>` +time+ `</span></div>`;
-  }
-
-            document.getElementById("scroller").innerHTML +=
-             `<div class="container">
-  <img src="—Pngtree—simple round frame tech element_3687986.png" alt="Avatar">
-  <p>` + obj['reply'] + `</p>
-  <span class="time-right">` +time+ `</span>
-</div>`;
-
-
-    scroller(document.getElementById("scroller"));
-            msg.text = obj['reply'];
-            speechSynthesis.speak(msg);
-       }
-     }
-        x.open("POST","http://127.0.0.1:5000/speak");
-        x.send();
-    }
-    function enterlistener(query){
-        var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes() ;
-        if(event.key === 'Enter'){
-
-        document.getElementById("scroller").innerHTML += `<div class='container darker'>
-  <img src='icons8-user-96.png' alt='Avatar' class='right'>
-  <p>` + document.getElementsByClassName("inputbar")[0].value +  `</p>
-  <span class='time-left'>` +time+ `</span></div>`;
-  scroller(document.getElementById("scroller"));
-  console.log(document.getElementById("scroller").value);
-
-
-
-        senddata();
-    document.getElementsByClassName("inputbar")[0].value = '';
-    }
-    }
-
-    function scroller(elem){
-        elem.scrollTop = elem.scrollHeight;
-    }
     </script>
 
 

@@ -3,7 +3,6 @@ position : fixed;
 width: 99%;
 bottom : 5%;
 left : 0px;
-background-color: red;
 height: 7%;
 
 }
@@ -13,13 +12,13 @@ height: 7%;
 #scroller::-webkit-scrollbar-track
 {
 
-	background-color: red;
+	!background-color: red;
 }
 
 #scroller::-webkit-scrollbar
 {
 	width: 7px;
-	background-color: red;
+	!background-color: red;
 }
 
 #scroller::-webkit-scrollbar-thumb
@@ -59,7 +58,7 @@ height: 7%;
 }
 .inputbar{
     border-radius : 25px;
-    border-width : 2px;
+    border-width : 1px;
     border-color : #ff1111;
     width : 40%;
     bottom : 10px;
@@ -108,10 +107,12 @@ height: 7%;
 }
 
 #all{
+    position : fixed;
     background-color : #ddd;
     overflow: hidden;
     height:100%;
-  background-image: linear-gradient(to right , rgba(250,238,227,0.4), rgba(112,112,112, 0.7));
+    width : 100%;
+    background-image: linear-gradient(to bottom right, rgba(255,132,0,1.0) , rgba(97,0,0,1.0) 20%, rgba(0,3,54, 1.0) 90%);
 }
 
 /* Clear floats */
@@ -119,8 +120,7 @@ height: 7%;
   content: "";
   clear: both;
   display: table;
-  opacity: 0.7;
-  filter: alpha(opacity=100);
+
 
 }
 
@@ -131,8 +131,7 @@ height: 7%;
   width: 100%;
   margin-right: 20px;
   border-radius: 50%;
-  opacity: 0.8;
-  filter: alpha(opacity=60);
+
 
 }
 
@@ -141,14 +140,14 @@ height: 7%;
   float: right;
   margin-left: 20px;
   margin-right:0;
-  opacity: 0.8;
-  filter: alpha(opacity=60);
+
 
 }
 
 /* Style time text */
 .time-right {
-  float: auto;
+  float: left;
+	
   color: #aaa;
   opacity: 0.8;
   filter: alpha(opacity=60);
@@ -156,10 +155,9 @@ height: 7%;
 
 /* Style time text */
 .time-left {
-  float: auto;
+  float: right;
   color: #999;
-  opacity: 0.8;
-  filter: alpha(opacity=60);
+
 }
 
 
@@ -181,16 +179,11 @@ height: 7%;
 
 
 
-
-
-
-
-/* The switch - the box around the slider */
 .switch {
-  position: absolute;
+  position: relative;
   display: inline-block;
-  width: 50px;
-  height: 22px;
+  width: 60px;
+  height: 34px;
 }
 
 /* Hide default HTML checkbox */
@@ -216,14 +209,13 @@ height: 7%;
 .slider:before {
   position: absolute;
   content: "";
-  height: 16px;
-  width: 16px;
+  height: 26px;
+  width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: black;
+  background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
-  opacity: 0.6;
 }
 
 input:checked + .slider {
@@ -242,9 +234,14 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 20%;
+  border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 40%;
+  border-radius: 50%;
 }
+
+
+
+
+
