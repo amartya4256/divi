@@ -16,10 +16,7 @@
       <div class="scrollbar" id="scroller" align = "middle">
 
 
-        <div class="container">
-  <img src="/w3images/bandmember.jpg" alt="Avatar">
-  <p>Hello. How are you today?</p>
-  <span class="time-right">11:00</span>
+
 </div>
 
 
@@ -99,10 +96,13 @@
         if (this.readyState == 4 && this.status == 200) {
             let obj = JSON.parse(this.responseText);
 
+
+            if (obj['request'] != undefined)  {
             document.getElementById("scroller").innerHTML += `<div class='container darker'>
   <img src='/w3images/avatar_g2.jpg' alt='Avatar' class='right'>
   <p>` + obj['request'] +  `</p>
   <span class='time-left'>11:05</span></div>`;
+  }
 
             document.getElementById("scroller").innerHTML +=
              `<div class="container">
@@ -110,10 +110,13 @@
   <p>` + obj['reply'] + `</p>
   <span class="time-right">11:00</span>
 </div>`;
+
+
     scroller(document.getElementById("scroller"));
             msg.text = obj['reply'];
             speechSynthesis.speak(msg);
-       }}
+       }
+     }
         x.open("POST","http://127.0.0.1:5000/speak");
         x.send();
     }

@@ -4,6 +4,7 @@ import re
 import pandas as pd
 from command import *
 import requests
+from random import choice
 
 global regex_data
 
@@ -90,32 +91,14 @@ def decide_type(query):
 
 def decide_speak():
     query = takecommand()
+    print(query)
     #query = 'Start camera'
     #exit()
     if query is not None:
-        query = query.lower()
-        response = None
-        #speak(query)
-
-
-        for row, key in zip(regex_data["regex"],regex_data["key"]):
-            if re.match(row, query) is not None:
-                if re.match(row, query).group() == query:
-                    response = command_caller(key, query)
-                    #speak(response)
-                    return response
-        ###################link to server###########################
-        if response is None:
-            try:
-                reply = requests.post("http://192.168.43.204:8000/chatbot/", data=query , timeout=2.5)
-                reply = reply.text
-            except:
-                reply = "The Internet and I are not talking right now."
-                # print(reply)
-                # speak(reply)
-            reply = {'reply' : reply, 'request' : query}
-            return reply
-    return "The Internet and I are not talking right now."
+        reply = decide_type(query)
+        reply = {'reply' : reply, 'request' : query}
+        return reply
+    return {'reply' : choice(["I didn't get you.", "The Internet and I are not talking right now."])}
 
 #if __name__ == "__main__":
 

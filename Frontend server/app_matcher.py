@@ -1,6 +1,7 @@
 import os
 import fnmatch
 from fuzzywuzzy import fuzz
+import requests
 
 def mul_dic_match(ref_dic,query):
     res_dic = dict()
@@ -40,6 +41,8 @@ def app_match(inp_array):
 
     else:
         #print(list(checklist.keys()), checklist)
+        if checklist == {}:
+            checklist = requests.post("http://192.168.43.204:8000/chatbot/",data= " ".join(inp_array) , timeout= 2.5).text
         return checklist
         #os.startfile(path)
 
