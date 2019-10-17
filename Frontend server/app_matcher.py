@@ -20,7 +20,6 @@ def mul_dic_match(ref_dic,query):
 
 
 def app_match(inp_array):
-    print("done")
     #global checklist
     checklist = dict()
     for root, dir, files in os.walk("C:\\ProgramData\\Microsoft\\Windows\\Start Menu"):
@@ -42,7 +41,10 @@ def app_match(inp_array):
     else:
         #print(list(checklist.keys()), checklist)
         if checklist == {}:
-            checklist = requests.post("http://192.168.43.204:8000/chatbot/",data= " ".join(inp_array) , timeout= 2.5).text
+            try:
+                checklist = requests.post("http://192.168.43.204:8000/chatbot/",data= " ".join(inp_array) , timeout= 2.5).text
+            except:
+                checklist = "I and Internet are not talking right now."
         return checklist
         #os.startfile(path)
 

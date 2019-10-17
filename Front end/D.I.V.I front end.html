@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 
 </head>
@@ -16,9 +17,11 @@
 
 
     <div id="all">
+        <img id = "logo" src = "d10.png">
         <div id="myNav" class="overlay">
             <!-- Button to close the overlay navigation -->
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+
 
             <!-- Overlay content -->
             <div class="overlay-content">
@@ -36,7 +39,11 @@
 
         </div>
             <!-- Use any element to open/show the overlay navigation menu -->
-        <span style = "cursor:pointer" onclick = "openNav()" class = "hamburger"><font size="+3">&#9776;</font></span>
+        <span style = "cursor:pointer" onclick = "navigator()" class = "hamburger">
+            <div class="rotate">
+                <font size="+3">&#9776;</font>
+                </div>
+        </span>
         <div id="chatbox" align="middle">
 
             <div class="scrollbar" id="scroller" align = "middle">
@@ -64,6 +71,13 @@
     <script language="javascript" src = "script.js">
 
     </script>
+<script>
+    $(".rotate").click(function () {
+        $(this).toggleClass("down");
+        console.log("done");
+        })
+</script>
+
 
 
 

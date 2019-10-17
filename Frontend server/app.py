@@ -19,6 +19,27 @@ def typein():
     print(response)
     return response
 
+@app.route('/autolisten/<value>', methods = ['GET', 'POST'])
+def autolisten(value):
+    if str(value) == "0":
+        f = open("auto_listen_last_state.txt", "w+")
+        f.write("0")
+        f.close()
+    elif str(value) == "1":
+        f = open("auto_listen_last_state.txt", "w+")
+        f.write("1")
+        f.close()
+    elif str(value) == "getdata":
+        f = open("auto_listen_last_state.txt", "r")
+        a = f.read()
+        print(a)
+        return a
+    return "Success"
+
+@app.route('/login')
+def login():
+    data = requests.data
+    pass
 
 
 

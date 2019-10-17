@@ -1,7 +1,40 @@
+#logo{
+    position : fixed;
+    width: 40%;
+    bottom : 7%;
+    left : 28%;
+    float : center;
+
+}
+
+
 /*Hamburger */
 .hamburger{
-    color : #21093f;
+    left : 5px;
+    position : absolute;
+    transform : rotate(90deg);
+    z-index : 5;
+    color : #f1f1f1;
 }
+
+.hamburgerclose{
+    color : #818181;
+}
+
+
+
+.rotate {
+    -moz-transition: all .5s linear;
+    -webkit-transition: all .5s linear;
+    transition: all .3s linear;
+}
+.rotate.down {
+    -moz-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    transform:rotate(90deg);
+}
+
+
 
  /* The Overlay (background) */
 .overlay {
@@ -47,7 +80,7 @@
 .overlay .closebtn {
   position: absolute;
   top: 20px;
-  right: 45px;
+  left: 45px;
   font-size: 60px;
 }
 
@@ -57,7 +90,7 @@
   .overlay .closebtn {
     font-size: 40px;
     top: 15px;
-    right: 35px;
+    left: 35px;
   }
 }
 

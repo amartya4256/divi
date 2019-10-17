@@ -25,11 +25,11 @@ function senddata(){
 	var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
 	var msg = new SpeechSynthesisUtterance();
   	var voices = window.speechSynthesis.getVoices();
-  	msg.voice = voices[0];
+  	msg.voice = voices[2];
   	msg.voiceURI = "native";
   	msg.volume = 2;
   	msg.rate = 1;
-  	msg.pitch = 0.8;
+  	msg.pitch = 1.0;
   	msg.text = '';
   	msg.lang = 'en-US';
         var x = new XMLHttpRequest();
@@ -60,7 +60,7 @@ function speakdata(){
 	var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
 	var msg = new SpeechSynthesisUtterance();
   	var voices = window.speechSynthesis.getVoices();
-  	msg.voice = voices[0];
+  	msg.voice = voices[4];
   	msg.voiceURI = "native";
   	msg.volume = 2;
   	msg.rate = 1;
@@ -101,8 +101,8 @@ function speakdata(){
 
 function enterlistener(query){
 
-    /*var today = new Date();
-        var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '' ) + today.getMinutes();*/
+    var today = new Date();
+    var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '' ) + today.getMinutes();
 	
 	if(event.key === 'Enter'){
 
@@ -165,8 +165,15 @@ function autolisten(checker) {
         var transcript = event.results[current][0].transcript;
         Content = transcript;
         if(Content.includes("time to talk")){
+            document.getElementById("scroller").innerHTML +=
+             		`<div class="container">
+  			<img src="divi_logo.png" alt="Avatar">
+  			<p>Yeah! I am listening...</p>
+  			<span class="time-right">` + time + `</span>
+			</div>`;
+			//var audio = new Audio('audio_file.mp3');
+            //audio.play();
 	        speakdata();
-	        console.log("hi" + Content);
         }
     };
 
@@ -202,3 +209,15 @@ function get_saved_state(){
     x.open("GET","http://127.0.0.1:5000/autolisten/getdata");
     x.send();
 }
+
+
+function navigator() {
+    console.log("nav")
+    if(document.getElementById("myNav").style.height == "100%") {
+        closeNav();
+    }
+    else {
+        openNav();
+    }
+}
+
