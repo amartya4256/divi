@@ -7,29 +7,47 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 </head>
 <body style = "background-color : red">
 
+
+
     <div id="all">
-        <label class="switch">
-  <input type="checkbox">
-  <span class="slider round"></span>
-</label>
-  <div id="chatbox" align="middle">
+        <div id="myNav" class="overlay">
+            <!-- Button to close the overlay navigation -->
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-      <div class="scrollbar" id="scroller" align = "middle">
+            <!-- Overlay content -->
+            <div class="overlay-content">
+                <p style = "color: #818181">Turn ON "Time To Talk"</p>
+                <label class="switch">
+
+                <input type="checkbox" id = "state" onchange="doalert(this)">
+                <span class="slider round"></span>
+                </label>
+                <a href="#">Home</a>
+                <a href="#">My Devices</a>
+                <a href="#">About</a>
+                <a href="#">Logout</a>
+            </div>
+
+        </div>
+            <!-- Use any element to open/show the overlay navigation menu -->
+        <span style = "cursor:pointer" onclick = "openNav()" class = "hamburger"><font size="+3">&#9776;</font></span>
+        <div id="chatbox" align="middle">
+
+            <div class="scrollbar" id="scroller" align = "middle">
 
 
 
-</div>
+            </div>
+
+        </div>
 
 
-
-
-
-  </div>
 
        <div id="inp" align = "middle">
       <input type="text" align="middle" class="inputbar" placeholder="Text"  onkeypress="enterlistener(this)" >
