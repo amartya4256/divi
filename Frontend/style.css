@@ -218,6 +218,8 @@ height: 7%;
 }
 
 #all{
+    left : 0px;
+    top : 0px;
     position : fixed;
     background-color : #ddd;
     overflow: hidden;

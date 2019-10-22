@@ -1,4 +1,14 @@
-
+var check = new XMLHttpRequest();
+check.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200){
+        if (this.responseText != "Yes") {
+            window.location = "login.html";
+        }
+    }
+};
+check.open("GET", "http://127.0.0.1:5000/logincheck");
+check.send();
+console.log("HI");
 
 get_saved_state();
 
@@ -223,4 +233,17 @@ function navigator() {
 
 function minimize(response) {
 
+}
+
+function logout(){
+console.log("logout")
+    var x = new XMLHttpRequest();
+    x.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("ho gaya");
+            window.location = "login.html";
+            }
+    };
+    x.open("GET","http://127.0.0.1:5000/logout");
+    x.send();
 }
