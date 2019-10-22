@@ -4,21 +4,37 @@
     <meta charset="UTF-8">
     <title>D.I.V.I</title>
     <meta name="D.I.V.I" value="notranslate">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script language="javascript">
 
+
+        var check = new XMLHttpRequest();
+        check.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            if (this.responseText != "Yes") {
+                window.location = "login.html";
+                }
+            }
+        };
+        check.open("GET", "http://127.0.0.1:5000/logincheck");
+        check.send();
+        console.log("HI");
+
+    </script>
 
 </head>
-<body >
+<body>
 
 
 
     <div id="all">
-        <img id = "logo" src = "d10.png">
-        <div id="myNav" class="overlay">
+        <img id = "logo" src = "d10.png" class = "bounceIn">
+        <div id="myNav" class="bounceIn overlay">
             <!-- Button to close the overlay navigation -->
 
 

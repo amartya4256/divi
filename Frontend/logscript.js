@@ -8,17 +8,17 @@ document.getElementById('id01').style.display='block';
 //window.onclick = function(event) {
 //    if (event.target == modal) {
 //        modal.style.display = "none";
-var check = new XMLHttpRequest();
-check.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200){
-        if (this.responseText == "Yes") {
-            window.location = "index.html";
-        }
-    }
-};
-check.open("GET", "http://127.0.0.1:5000/logincheck");
-check.send();
-console.log("HI");
+//var check = new XMLHttpRequest();
+//check.onreadystatechange = function() {
+//    if (this.readyState == 4 && this.status == 200){
+//        if (this.responseText == "Yes") {
+//            window.location = "index.html";
+//        }
+//    }
+//};
+//check.open("GET", "http://127.0.0.1:5000/logincheck");
+//check.send();
+//console.log("HI");
 
 
 function submit_data() {

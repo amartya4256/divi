@@ -1,10 +1,11 @@
-import json
+import json,os
 
 from decider import *
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_cors import CORS
 
-app = Flask(__name__)
+template_dir = os.path.abspath('../Frontend')
+app = Flask(__name__, template_folder=template_dir)
 CORS(app)
 
 global login_res
@@ -90,6 +91,9 @@ def logout():
     f.close()
     return "Logged out!"
 
+@app.route('/', methods = ['GET'])
+def index():
+    return render_template("login.html")
 
 
 if __name__ == '_main_':

@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="logstyle.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script language="javascript">
+
+        var check = new XMLHttpRequest();
+        check.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            if (this.responseText == "Yes") {
+                window.location = "index.html";
+                }
+            }
+        };
+        check.open("GET", "http://127.0.0.1:5000/logincheck");
+        check.send();
+        console.log("HI");
 
 
+    </script>
+
+</head>
 <body>
 
      <div id="all">
@@ -19,7 +37,7 @@
       <img src="log.png" alt="Avatar" class="log" width="100px" height="100px">
     </div>
 
-    <div class="container">
+    <div class="lolcontainer">
       <label for="uname"><b>Username</b></label>
       <input type="text" id = "name" placeholder="Enter Username" name="username" required>
 

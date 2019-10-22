@@ -1,14 +1,14 @@
-var check = new XMLHttpRequest();
-check.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200){
-        if (this.responseText != "Yes") {
-            window.location = "login.html";
-        }
-    }
-};
-check.open("GET", "http://127.0.0.1:5000/logincheck");
-check.send();
-console.log("HI");
+//var check = new XMLHttpRequest();
+//check.onreadystatechange = function() {
+//    if (this.readyState == 4 && this.status == 200){
+//        if (this.responseText != "Yes") {
+//            window.location = "login.html";
+//        }
+//    }
+//};
+//check.open("GET", "http://127.0.0.1:5000/logincheck");
+//check.send();
+//console.log("HI");
 
 get_saved_state();
 

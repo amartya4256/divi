@@ -12,7 +12,8 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 button {
-  background-color: #4CAF50;
+  //background-color: #4CAF50;
+  background-image: linear-gradient(to bottom right, rgba(255,132,0,1.0) , rgba(97,0,0,1.0) 20%, rgba(0,3,54, 1.0) 90%);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -44,7 +45,7 @@ img.avatar {
   border-radius: 50%;
 }
 
-.container {
+.lolcontainer {
   padding: 16px;
 }
 
