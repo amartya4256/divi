@@ -30,7 +30,6 @@
 
 
 <div id="id01" class="modal">
-
   <div class="modal-content animate">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -42,8 +41,8 @@
       <input type="text" id = "name" placeholder="Enter Username" name="username" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" id = "pwd" placeholder="Enter Password" name="password" required>
-
+      <input type="password" id = "pwd" placeholder="Enter Password" name="password" required onkeypress="entersubmit()">
+      <p id = 'response' style = "color : red"></p>
       <button type="submit" onclick="submit_data()">Login</button>
 
     </div>

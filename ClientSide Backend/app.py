@@ -1,24 +1,14 @@
-import json,os
-
+import json
 from decider import *
-from flask import Flask, request, render_template
+from flask import Flask, request
 from flask_cors import CORS
 
-template_dir = os.path.abspath('../Frontend')
-app = Flask(__name__, template_folder=template_dir)
+
+app = Flask(__name__)
 CORS(app)
 
-global login_res
 
-# f = open("cookie.txt", "w+")
-# user_data = f.read()
-# if user_data!='':
-#     cookie = user_data.split(" ")[0]
-#     res = requests.post("http://192.168.43.204:8000/login_check/", data=cookie)
-#     login_res = res.text
-#     if login_res != cookie.split(" ")[1]:
-#         f.write("")
-# f.close()
+
 
 @app.route('/speak',methods=['POST'])
 def speakin():
@@ -56,8 +46,13 @@ def autolisten(value):
 @app.route('/login', methods = ['POST'])
 def login():
     data = request.data
-    res = requests.post("http://192.168.43.204:8000/chatbot/login", data=data)
-    res = json.loads(str(res.text))
+    try:
+        res = requests.post("http://192.168.43.204:8000/chatbot/login", data=data)
+        res = json.loads(str(res.text))
+    except:
+        res = {"response" : "Cannot Connect to Server"}
+        return res['response']
+
     print(res)
     if res['response'] == "Yes":
         f = open("cookie.txt", "w")
@@ -68,7 +63,6 @@ def login():
     else:
         print("no")
         return "Check your credentials!"
-    return "yo"
 
 @app.route('/logincheck', methods = ['GET'])
 def login_check():
@@ -91,10 +85,8 @@ def logout():
     f.close()
     return "Logged out!"
 
-@app.route('/', methods = ['GET'])
-def index():
-    return render_template("login.html")
 
 
-if __name__ == '_main_':
+
+if __name__ == '__main__':
     app.run()

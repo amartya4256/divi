@@ -33,7 +33,7 @@ function submit_data() {
                     window.location = "index.html";
                 }
                 else {
-
+                    document.getElementById("response").innerText = this.responseText;
                 }
             }
         };
@@ -41,4 +41,10 @@ function submit_data() {
     var y = {"username" : name, "password" : pwd};
     var z = JSON.stringify(y);
     x.send(z);
+}
+
+function entersubmit() {
+    if(event.key === 'Enter') {
+        submit_data();
     }
+}

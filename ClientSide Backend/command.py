@@ -4,8 +4,7 @@ from app_matcher import app_match,mul_dic_match
 
 
 '''C:\ProgramData\Microsoft\Windows\Start Menu\Programs'''
-#def assistant(command):
- #   call out n where n = command
+
 
 global cmd_reff
 
@@ -38,5 +37,5 @@ def command_caller(pos,query):
         executed = cmd_reff[str(pos)]()
         return executed
 
-cmd_reff = {'picture':camera , 'mail':mail , 'browser':browser , 'music':music, 'start_app':app_match}
+cmd_reff = {'picture':camera , 'mail':mail , 'brows er':browser , 'music':music, 'start_app':app_match}
 
