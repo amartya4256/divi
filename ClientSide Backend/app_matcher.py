@@ -22,14 +22,16 @@ def mul_dic_match(ref_dic,query):
 def app_match(inp_array):
     #global checklist
     checklist = dict()
-    for root, dir, files in os.walk("C:\\ProgramData\\Microsoft\\Windows\\Start Menu"):
-        #print(root)
-        # print ("")
-        for items in fnmatch.filter(files, "*"):
-            #print(root + r'\\' + items)
-            path = root + r'\\' + items
-            if "uninstall" not in items.lower()[:-4] and fuzz.token_set_ratio(items.lower()[:-4],inp_array)>50:
-                checklist[items[:-4]] = path
+    walk_list = ["C:\\ProgramData\\Microsoft\\Windows\\Start Menu", "C:\\Users\\" + os.getlogin() + "\\AppData\\Roaming\\Microsoft"]
+    for paths in walk_list:
+        for root, dir, files in os.walk(paths):
+            #print(root)
+            # print ("")
+            for items in fnmatch.filter(files, "*"):
+                #print(root + r'\\' + items)
+                path = root + r'\\' + items
+                if "uninstall" not in items.lower()[:-4] and fuzz.token_set_ratio(items.lower()[:-4],inp_array)>50:
+                    checklist[items[:-4]] = path
     if len(checklist.keys())==1:
         try:
             os.startfile(checklist[list(checklist.keys())[0]])
