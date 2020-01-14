@@ -23,9 +23,10 @@ def runserver():
             query = body.decode('utf-8')
             res = decide_type(query)
             try:
-                res.encode()
+                res = res.encode()
             except:
                 res = b'We are still working on ambiguous apps remote execution. Thank you for you patience.'
+            print(res, type(res))
             self.send_response(200)
             self.end_headers()
             response = BytesIO()

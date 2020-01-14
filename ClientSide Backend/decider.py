@@ -69,6 +69,21 @@ def decide_type(query):
     # exit()
     if query is not None:
         # speak(query)
+        f = open("cookie.txt", "r")
+        text = f.read()
+        text = text.split(" ")[0]
+        data_req = requests.post('http://192.168.43.204:8000/chatbot/database', data = text)
+        data_res = eval(data_req.text.replace("'", '"'))
+        for device in data_res['devices']:
+            if device in query:
+                exec_data = {'username' : text, 'query' : query, "dev_name" : device}
+                exec_req = requests.post('http://192.168.43.204:8000/chatbot/remoteexecuter', data = str(exec_data))
+                if exec_req.text != "Fail" :
+                    print("remoting")
+                    return exec_req.text
+
+
+
         for row, key in zip(regex_data["regex"], regex_data["key"]):
             if re.match(row, query) is not None:
                 if re.match(row, query).group() == query:
@@ -99,6 +114,11 @@ def decide_speak():
         reply = {'reply' : reply, 'request' : query}
         return reply
     return {'reply' : choice(["I didn't get you.", "The Internet and I are not talking right now."])}
+
+def get_ip_address():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    return s.getsockname()[0]
 
 #if __name__ == "__main__":
 

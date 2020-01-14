@@ -46,16 +46,46 @@ function senddata(){
         x.onreadystatechange = function() {
 
         	if (this.readyState == 4 && this.status == 200) {
+
+                var check = {"nothing":"nothing"};
+        	    try{var check = JSON.parse(this.responseText);}
+        	    finally{
+        	    if (check['parsable'] != undefined)
+        	        {
+
+        	        var add_text = "&nbsp;";
+        	        for (var key in check) {
+                        if (key!='parsable'){
+
+        	            add_text += `<button class = 'appbutton' onclick = "app_executer('` + check[key] + `', '` + key + `')">` + key + `</button> &nbsp;`;
+        	         }
+        	         }
+
+        	         console.log(add_text);
+                        document.getElementById("scroller").innerHTML +=
+             	    `<div class="container">
+  		            <img src="divi_logo.png" alt="Avatar">` + add_text + `<span class="time-right">`+ time + `</span>
+		            </div>`;
+
+
+
+
+
+        	        msg.text = "Which one do you want?";
+            	    speechSynthesis.speak(msg);
+        	        }
+        	 else {
             		document.getElementById("scroller").innerHTML +=
              	`<div class="container">
   		<img src="divi_logo.png" alt="Avatar">
   		<p>` + this.responseText + `</p>
   		<span class="time-right">`+ time + `</span>
 		</div>`;
+		msg.text = this.responseText;
+        speechSynthesis.speak(msg);
+		    }
+		    }
     		scroller(document.getElementById("scroller"));
-
-            	msg.text = this.responseText;
-            	speechSynthesis.speak(msg);
        }}
 
         x.open("POST","http://127.0.0.1:5000/type");
@@ -181,6 +211,7 @@ function autolisten(checker) {
   			<p>Yeah! I am listening...</p>
   			<span class="time-right">` + time + `</span>
 			</div>`;
+			scroller(document.getElementById("scroller"));
 			//var audio = new Audio('audio_file.mp3');
             //audio.play();
 	        speakdata();
@@ -246,4 +277,60 @@ console.log("logout")
     };
     x.open("GET","http://127.0.0.1:5000/logout");
     x.send();
+}
+
+function app_executer(path, key){
+    console.log(path, key);
+    var today = new Date();
+	var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
+    var msg = new SpeechSynthesisUtterance();
+  	var voices = window.speechSynthesis.getVoices();
+  	msg.voice = voices[2];
+  	msg.voiceURI = "native";
+  	msg.volume = 2;
+  	msg.rate = 1;
+  	msg.pitch = 1.0;
+  	msg.text = '';
+  	msg.lang = 'en-US';
+
+    document.getElementById("scroller").innerHTML += `<div class='container darker'>
+  				<img src='user.png' alt='Avatar' class='right'>
+  				<p>` + key +  `</p>
+  				<span class='time-left'>` + time + `</span></div>`;
+  	scroller(document.getElementById("scroller"));
+
+    var x = new XMLHttpRequest();
+    x.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText=="Success"){
+            document.getElementById("scroller").innerHTML +=
+             	`<div class="container">
+  		<img src="divi_logo.png" alt="Avatar">
+  		<p>` + "Starting " + key + `</p>
+  		<span class="time-right">`+ time + `</span>
+		</div>`;
+        var say = "Starting " + key;
+		msg.text = say;
+        speechSynthesis.speak(msg);
+
+        scroller(document.getElementById("scroller"));
+
+            }
+            else{
+            document.getElementById("scroller").innerHTML +=
+             	`<div class="container">
+  		<img src="divi_logo.png" alt="Avatar">
+  		<p>` + "Failed to start" + key + `</p>
+  		<span class="time-right">`+ time + `</span>
+		</div>`;
+        var say = "Failed to start" + key;
+		msg.text = say;
+        speechSynthesis.speak(msg);
+
+        scroller(document.getElementById("scroller"));
+            }
+            }
+    };
+    x.open("POST", "http://127.0.0.1:5000/app_executer");
+    x.send(JSON.stringify({'path' : path}));
 }

@@ -39,12 +39,18 @@ def app_match(inp_array):
             return "Couldn't Start " + list(checklist.keys())[0]
 
     else:
+        print("yaha aa gaye hum")
         #print(list(checklist.keys()), checklist)
         if checklist == {}:
             try:
                 checklist = requests.post("http://192.168.43.204:8000/chatbot/",data= " ".join(inp_array) , timeout= 2.5).text
             except:
                 checklist = "I and Internet are not talking right now."
+        else:
+            checklist['parsable'] = '1'
+            for each in checklist.keys():
+                checklist[each] = checklist[each].replace('\\', "$")
+            print(checklist)
         return checklist
         #os.startfile(path)
 

@@ -2,6 +2,7 @@ import json
 from decider import *
 from flask import Flask, request
 from flask_cors import CORS
+from os import startfile
 
 
 app = Flask(__name__)
@@ -85,7 +86,18 @@ def logout():
     f.close()
     return "Logged out!"
 
-
+@app.route('/app_executer', methods = ['POST'])
+def app_executer():
+    data = request.data
+    data = data.decode('utf-8')
+    new_data = eval(data)
+    print(new_data)
+    path = new_data['path'].replace('$', '\\')
+    try:
+        startfile(path)
+        return "Success"
+    except:
+        return "Fail"
 
 
 if __name__ == '__main__':
