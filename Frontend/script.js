@@ -29,7 +29,7 @@ function closeNav() {
 
 
 
-function senddata(){
+function senddata() {
 
 	var today = new Date();
 	var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
@@ -112,6 +112,7 @@ function speakdata(){
         
 		if (this.readyState == 4 && this.status == 200) {
             		let obj = JSON.parse(this.responseText);
+            		console.log(obj);
 
 
             		if (obj['request'] != undefined)  {
@@ -120,18 +121,48 @@ function speakdata(){
   				<p>` + obj['request'] +  `</p>
   				<span class='time-left'>` + time + `</span></div>`;
   			}
+                var check = {"nothing":"nothing"};
+  			    try{var check = obj['reply']}
+                finally{
+        	    if (check['parsable'] != undefined)
+        	        {
 
-            		document.getElementById("scroller").innerHTML +=
-             		`<div class="container">
-  			<img src="divi_logo.png" alt="Avatar">
-  			<p>` + obj['reply'] + `</p>
-  			<span class="time-right">` + time + `</span>
-			</div>`;
+        	        var add_text = "&nbsp;";
+        	        for (var key in check) {
+                        if (key!='parsable'){
+
+        	            add_text += `<button class = 'appbutton' onclick = "app_executer('` + check[key] + `', '` + key + `')">` + key + `</button> &nbsp;`;
+        	         }
+        	         }
+
+        	         console.log(add_text);
+                        document.getElementById("scroller").innerHTML +=
+             	    `<div class="container">
+  		            <img src="divi_logo.png" alt="Avatar">` + add_text + `<span class="time-right">`+ time + `</span>
+		            </div>`;
 
 
-    			scroller(document.getElementById("scroller"));
-            		msg.text = obj['reply'];
-            		speechSynthesis.speak(msg);
+
+
+
+        	        msg.text = "Which one do you want?";
+            	    speechSynthesis.speak(msg);
+        	        }
+        	        else {
+        	            document.getElementById("scroller").innerHTML +=
+             		    `<div class="container">
+  			            <img src="divi_logo.png" alt="Avatar">
+  			            <p>` + obj['reply'] + `</p>
+  			            <span class="time-right">` + time + `</span>
+			            </div>`;
+
+
+    			        scroller(document.getElementById("scroller"));
+            		    msg.text = obj['reply'];
+            		    speechSynthesis.speak(msg);
+            		    }
+        	        }
+                scroller(document.getElementById("scroller"));
        			}
      		}
         	x.open("POST","http://127.0.0.1:5000/speak");
