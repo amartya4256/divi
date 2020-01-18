@@ -8,14 +8,20 @@ from decider import decide_type
 #Put dist exe in the same directory as of regex
 #For no console:
 
+####################### Hosts http server on client machine to listen to remote requests ##########################
+
 def runserver():
 
     class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+
+        ###### GET mode is made for testing purpose #######
 
         def do_GET(self):
             self.send_response(200)
             self.end_headers()
             self.wfile.write(b'Hello, world!')
+
+        ###### Takes POST mode query data and initites decider on own device ######
 
         def do_POST(self):
             content_length = int(self.headers['Content-Length'])
@@ -25,6 +31,9 @@ def runserver():
             try:
                 res = res.encode()
             except:
+
+                ############## Can't work on MultiMatch of application on remote device for now ##############
+
                 res = b'We are still working on ambiguous apps remote execution. Thank you for you patience.'
             print(res, type(res))
             self.send_response(200)
@@ -35,10 +44,14 @@ def runserver():
             response.write(res)
             self.wfile.write(response.getvalue())
 
+    ############# CORS enables httpserver connection with third party services, like DIVI ##############
+
     class CORSRequestHandler(SimpleHTTPRequestHandler):
         def end_headers(self):
             self.send_header('Access-Control-Allow-Origin', '*')
             SimpleHTTPRequestHandler.end_headers(self)
+
+######################### Hosts Http Server at client machine on port no. 16286 ###########################
 
     httpd = HTTPServer((get_ip_address(), 16286), SimpleHTTPRequestHandler, CORSRequestHandler)
     httpd.serve_forever()

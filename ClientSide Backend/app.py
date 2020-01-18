@@ -9,13 +9,15 @@ app = Flask(__name__)
 CORS(app)
 
 
-
+######################## Endpoint to activate microphone to speak ######################
 
 @app.route('/speak',methods=['POST'])
 def speakin():
     response = decide_speak()
     print(response)
     return response
+
+######################## Endpoint to take input through keyboard #######################
 
 @app.route('/type',methods=['POST'])
 def typein():
@@ -25,6 +27,10 @@ def typein():
     response = decide_type(query)
     print(response)
     return response
+
+
+######### Checks the value set by user for autolisten and saves it #################
+######### value is the value set by user, 1 is On, 0 is Off #################
 
 @app.route('/autolisten/<value>', methods = ['GET', 'POST'])
 def autolisten(value):
@@ -43,6 +49,8 @@ def autolisten(value):
         print(a)
         return a
     return "Success"
+
+################### Takes login information, matches with the database, logins in or restricts according to result ##########################
 
 @app.route('/login', methods = ['POST'])
 def login():
@@ -65,6 +73,8 @@ def login():
         print("no")
         return "Check your credentials!"
 
+############## Reads cookie file, if cookie found, logs in, else moves to login page #######################
+
 @app.route('/logincheck', methods = ['GET'])
 def login_check():
     f = open("cookie.txt", "r")
@@ -85,6 +95,8 @@ def logout():
     f.write("")
     f.close()
     return "Logged out!"
+
+############### Directly executes apps using multimatcher selector #####################
 
 @app.route('/app_executer', methods = ['POST'])
 def app_executer():

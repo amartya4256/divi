@@ -19,7 +19,7 @@ def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
-#new yet to be embedded opens mic and listens to calls...(be safe)
+
 def auto_listen():
 
     r = sr.Recognizer()
@@ -72,6 +72,9 @@ def decide_type(query):
         f = open("cookie.txt", "r")
         text = f.read()
         text = text.split(" ")[0]
+
+#################### Requests Database to check if remote execution demanded ####################
+
         data_req = requests.post('http://192.168.43.204:8000/chatbot/database', data = text)
         data_res = eval(data_req.text.replace("'", '"'))
         for device in data_res['devices']:
@@ -82,7 +85,7 @@ def decide_type(query):
                     print("remoting")
                     return exec_req.text
 
-
+##################### If recognized as local system command #####################
 
         for row, key in zip(regex_data["regex"], regex_data["key"]):
             if re.match(row, query) is not None:
@@ -92,7 +95,7 @@ def decide_type(query):
                     return response
 
 
-                ############################link to server########################
+##################### If recognized as chat message ########################
         if response is None:
             try:
                 reply = requests.post("http://192.168.43.204:8000/chatbot/",data= query , timeout= 2.5)

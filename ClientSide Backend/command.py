@@ -28,6 +28,8 @@ def music():
     subprocess.run('start microsoft.windows.groove:', shell=True)
     return "Playing Music"
 
+######################### Executes command on the basis of regex matched ###########################
+
 def command_caller(pos,query):
     print(pos)
     if pos == 'start_app':

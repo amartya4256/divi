@@ -49,6 +49,7 @@ function senddata() {
 
                 var check = {"nothing":"nothing"};
         	    try{var check = JSON.parse(this.responseText);}
+        	    catch(err) {}
         	    finally{
         	    if (check['parsable'] != undefined)
         	        {
@@ -81,11 +82,13 @@ function senddata() {
   		<p>` + this.responseText + `</p>
   		<span class="time-right">`+ time + `</span>
 		</div>`;
+
 		msg.text = this.responseText;
         speechSynthesis.speak(msg);
 		    }
+
+		scroller(document.getElementById("scroller"));
 		    }
-    		scroller(document.getElementById("scroller"));
        }}
 
         x.open("POST","http://127.0.0.1:5000/type");
@@ -122,7 +125,8 @@ function speakdata(){
   				<span class='time-left'>` + time + `</span></div>`;
   			}
                 var check = {"nothing":"nothing"};
-  			    try{var check = obj['reply']}
+  			    try{var check = obj['reply'];}
+  			    catch(err) {}
                 finally{
         	    if (check['parsable'] != undefined)
         	        {
@@ -161,8 +165,9 @@ function speakdata(){
             		    msg.text = obj['reply'];
             		    speechSynthesis.speak(msg);
             		    }
+            		    scroller(document.getElementById("scroller"));
         	        }
-                scroller(document.getElementById("scroller"));
+
        			}
      		}
         	x.open("POST","http://127.0.0.1:5000/speak");

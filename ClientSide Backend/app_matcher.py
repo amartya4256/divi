@@ -21,6 +21,7 @@ def mul_dic_match(ref_dic,query):
 
 def app_match(inp_array):
     #global checklist
+    val = dict()
     checklist = dict()
     walk_list = ["C:\\ProgramData\\Microsoft\\Windows\\Start Menu", "C:\\Users\\" + os.getlogin() + "\\AppData\\Roaming\\Microsoft"]
     for paths in walk_list:
@@ -30,8 +31,21 @@ def app_match(inp_array):
             for items in fnmatch.filter(files, "*"):
                 #print(root + r'\\' + items)
                 path = root + r'\\' + items
-                if "uninstall" not in items.lower()[:-4] and fuzz.token_set_ratio(items.lower()[:-4],inp_array)>50:
+                if "uninstall" not in items.lower()[:-4] and fuzz.token_set_ratio(items.lower()[:-4],inp_array)>60:
+                    val[items[:-4]] = fuzz.token_set_ratio(items.lower()[:-4],inp_array)
                     checklist[items[:-4]] = path
+
+############################ Search Optimization ##########################
+
+    main_checklist = dict()
+    for key in val.keys():
+        if val[key] == 100:
+            main_checklist[key] = checklist[key]
+    if len(main_checklist) > 0:
+        checklist = main_checklist
+
+############################ File execution decision #########################
+
     if len(checklist.keys())==1:
         try:
             os.startfile(checklist[list(checklist.keys())[0]])
