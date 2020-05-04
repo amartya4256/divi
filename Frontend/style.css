@@ -1,5 +1,13 @@
 /*Multi app handler*/
-
+#logotemp{
+    position : fixed;
+    width: 40%;
+    //bottom : 27%;
+    top : 30%;
+    left : 28%;
+    float : center;
+    margin-top: 0px;
+}
 
 
 
@@ -378,7 +386,6 @@ input:checked + .slider:before {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-
 
 
 

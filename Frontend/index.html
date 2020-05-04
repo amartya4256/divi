@@ -26,14 +26,16 @@
         console.log("HI");
 
     </script>
-
+    <p id="about">D.I.V.I. description is due yet....</p>
 </head>
 <body>
 
 
 
     <div id="all">
-        <img id = "logo" src = "d10.png" class = "bounceIn">
+        <!-- <img id = "logotemp" src = "divi_logo.png" class = "bounceIn"> -->
+        <img id = "logo" src = "divi_logo.png" class = "bounceIn">
+        <!--<img id = "logo" src = "d10.png" class = "bounceIn">-->
         <div id="myNav" class="bounceIn overlay">
             <!-- Button to close the overlay navigation -->
 
@@ -47,10 +49,10 @@
                 <input type="checkbox" id = "state" onchange="doalert(this)">
                 <span class="slider round"></span>
                 </label>
-                <a href="#">Home</a>
-                <a href="#">My Devices</a>
-                <a href="#">About</a>
-                <a href='' onclick = "logout()">Logout</a>
+                <a onclick = "navigator()">Home</a>
+                <a>My Devices</a>
+                <a href="#about">About D.I.V.I.</a>
+                <a onclick = "logout()">Logout</a>
             </div>
 
         </div>

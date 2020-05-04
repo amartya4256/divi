@@ -28,7 +28,6 @@ function closeNav() {
 }
 
 
-
 function senddata() {
 
 	var today = new Date();
@@ -103,7 +102,7 @@ function speakdata(){
 	var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
 	var msg = new SpeechSynthesisUtterance();
   	var voices = window.speechSynthesis.getVoices();
-  	msg.voice = voices[4];
+  	msg.voice = voices[2];
   	msg.voiceURI = "native";
   	msg.volume = 2;
   	msg.rate = 1;
