@@ -1,0 +1,94 @@
+.modal{
+    display : none;
+    z-index: 1;
+    position : fixed;
+    max-width : 600px;
+    max-height : 400px;
+    width : 100%;
+    height : 100%;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.modal-header{
+    display : flex;
+    flex-direction : row;
+    padding : 5px;
+    text-align : center;
+    border-top-right-radius : 10px;
+    border-top-left-radius : 10px;
+    background-image: linear-gradient(to bottom right, #3B0000, #914800);
+}
+
+.modal-content{
+    border-bottom-right-radius : 10px;
+    border-bottom-left-radius : 10px;
+    background : #eeeeee;
+    max-height : 250px;
+    height : 100%;
+}
+
+.header-content{
+    margin: 0 auto;
+    width : 300px;
+    color : white;
+    font-family : 'Montserrat', sans-serif;
+}
+
+#devices{
+    display : flex;
+    flex-direction : row;
+}
+
+.device-name{
+    background : #914800;
+    border-radius : 10px;
+    margin : 10px;
+    padding : 10px;
+    color : white;
+    font-family : 'Montserrat', sans-serif;
+}
+
+.remove-device{
+    color : white;
+    margin-left : 10px;
+    cursor : pointer;
+}
+
+.close-modal{
+    color : white;
+    cursor : pointer;
+    margin : 0px;
+    margin-right : 5px;
+}
+
+.add-device{
+  background-color: #914800;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  height : 45px;
+  width : 45px;
+  border-radius: 50%;
+
+  transition : 0.2s;
+}
+
+.add-device:active{
+    transform : scale(0.97);
+}
+
+.add-device:hover{
+    background : #3B0000;
+}

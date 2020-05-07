@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>D.I.V.I</title>
+    <title>D.I.V.I.</title>
     <meta name="D.I.V.I" value="notranslate">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/animate.min.css">
+    <link rel="stylesheet" href="styles/w3.css">
+    <link rel="stylesheet" href="styles/fa.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/add-device-style.css">
+    <link rel="stylesheet" href="styles/speak.css">
+    <link rel="stylesheet" href="styles/modal.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script language="javascript">
@@ -26,16 +30,14 @@
         console.log("HI");
 
     </script>
-    <p id="about">D.I.V.I. description is due yet....</p>
+
 </head>
 <body>
 
 
 
     <div id="all">
-        <!-- <img id = "logotemp" src = "divi_logo.png" class = "bounceIn"> -->
-        <img id = "logo" src = "divi_logo.png" class = "bounceIn">
-        <!--<img id = "logo" src = "d10.png" class = "bounceIn">-->
+        <img id = "logo" src = "divi_logo.png" class = "bounceIn spin-logo">
         <div id="myNav" class="bounceIn overlay">
             <!-- Button to close the overlay navigation -->
 
@@ -49,10 +51,10 @@
                 <input type="checkbox" id = "state" onchange="doalert(this)">
                 <span class="slider round"></span>
                 </label>
-                <a onclick = "navigator()">Home</a>
-                <a>My Devices</a>
-                <a href="#about">About D.I.V.I.</a>
-                <a onclick = "logout()">Logout</a>
+                <a href="#" onclick="navigator()">Home</a>
+                <a href="#" onclick="getModal()" id = "myDevices">My Devices</a>
+                <a href="#">About</a>
+                <a href='' onclick = "logout()">Logout</a>
             </div>
 
         </div>
@@ -75,25 +77,84 @@
 
 
        <div id="inp" align = "middle">
-      <input type="text" align="middle" class="inputbar" placeholder="Text"  onkeypress="enterlistener(this)" >
+      <input type="text" align="middle" class="inputbar" placeholder="Type to experience intelligence..."  onkeypress="enterlistener(this)" >
       &nbsp;
-      <input type="image" class="search" src = 'search.svg' onclick="speakdata()">
+      <img id = "mic" class="search" src = 'search.svg' onclick="speakdata()">
            <br/><br/>
        </div>
 
+        <div class="modal centered" id = "modal">
+            <div class = "modal-header">
+                    <h4 class = "header-content">My Devices</h4>
+                    <h4 class = "close-modal" onclick = "closeModal()">&#10006;</h4>
+            </div>
+            <div class = "modal-content">
+                <div id = "devices">
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade centered" id="addDevice">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class = "add-dev-wrapper">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">My Devices</h5>
+                  <div class = "flex-left">
+                      <h4 class = "close-modal" onclick = "closeAddDeviceContainer()">&#10006;</h4>
+                      </button>
+                  </div>
+              </div>
+              <div class="modal-body">
+                <form>
+                    <table class="table table-responsive-md">
+                        <tr>
+                            <td>
+                                <label for="dname">Device Name:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="dname" name="dname"><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="ipname">IP Address:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="ipname" name="ipname">
+                            </td>
+                        </tr>
+                    </table>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeAddDeviceContainer()">Close</button>
+                <button type="button" class="btn btn-primary" id = "addDeviceBtn" onclick="addDevice(document.querySelector('#dname').value, document.querySelector('#ipname').value)">Add device</button>
+              </div>
+              <div>
+                  <p style="color : #914800" id = "message"></p>
+              </div>
+            </div>
+          </div>
+        </div>
 
 </div>
 
-    </div>
-
-    <script language="javascript" src = "script.js">
-
-    </script>
+    <script language="javascript" src = "script.js"></script>
+    <script language="javascript" src = "scripts/addDevice.js"></script>
 <script>
     $(".rotate").click(function () {
         $(this).toggleClass("down");
         console.log("done");
-        })
+        });
+
+    $(document).keydown(function(e){
+        if(e.keyCode == 27 && $("#myNav")[0].style.height == "100%"){
+            closeNav();
+            $(".rotate").toggleClass("down");
+        }
+    });
 </script>
 
 

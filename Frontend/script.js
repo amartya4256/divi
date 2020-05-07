@@ -14,7 +14,8 @@ get_saved_state();
 
 var today = new Date();
 var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '' ) + today.getMinutes();
-
+const micOn = new Audio('resources/micOn.wav');
+const micOff = new Audio('resources/micOff.wav');
 
 /* Open when someone clicks on the span element */
 function openNav() {
@@ -28,13 +29,14 @@ function closeNav() {
 }
 
 
+
 function senddata() {
 
 	var today = new Date();
 	var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
 	var msg = new SpeechSynthesisUtterance();
   	var voices = window.speechSynthesis.getVoices();
-  	msg.voice = voices[2];
+  	msg.voice = voices[1];
   	msg.voiceURI = "native";
   	msg.volume = 2;
   	msg.rate = 1;
@@ -98,21 +100,50 @@ function senddata() {
 
 function speakdata(){
 
+
 	var today = new Date();
 	var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
 	var msg = new SpeechSynthesisUtterance();
   	var voices = window.speechSynthesis.getVoices();
-  	msg.voice = voices[2];
+  	msg.voice = voices[4];
   	msg.voiceURI = "native";
   	msg.volume = 2;
   	msg.rate = 1;
   	msg.pitch = 0.8;
   	msg.text = '';
   	msg.lang = 'en-US';
+
+        const btn = document.querySelector('#mic');
+
+        //Dealing with switch mic off
+        if(btn.classList.contains("spin")){
+            micOff.play();
+            btn.classList.remove("spin");
+            return;
+        }
+
+        //Handle mic on
+  	    btn.classList.add("spin");
+  	    try{
+  	        micOn.play();
+  	    } catch(e) {
+  	        msg.text = "I'm listening.";
+  	        speechSynthesis.speak(msg);
+  	    }
+
         var x = new XMLHttpRequest();
         x.onreadystatechange = function() {
-        
+
+
 		if (this.readyState == 4 && this.status == 200) {
+
+		            //Dealing with switch mic off in between
+                    if(!btn.classList.contains("spin")){
+                        return;
+                    }
+
+                    //Handle mic response
+		            btn.classList.remove("spin");
             		let obj = JSON.parse(this.responseText);
             		console.log(obj);
 
@@ -248,7 +279,6 @@ function autolisten(checker) {
 			</div>`;
 			scroller(document.getElementById("scroller"));
 			//var audio = new Audio('audio_file.mp3');
-            //audio.play();
 	        speakdata();
         }
     };
@@ -368,4 +398,51 @@ function app_executer(path, key){
     };
     x.open("POST", "http://127.0.0.1:5000/app_executer");
     x.send(JSON.stringify({'path' : path}));
+}
+//plays sound on mouseclick
+//function togglePlay(){
+//
+//    return myAudio.paused ? myAudio.play()&&speakdata() : myAudio.pause();
+//
+//}
+
+function getModal(){
+    getDevices();
+    document.querySelector("#modal").style.display = "block";
+}
+
+async function getDevices(){
+    fetch("http://127.0.0.1:5000/get-devices").then((data) => data.json()).then((data) => {
+        var modal = document.querySelector("#devices");
+        modal.innerHTML = "";
+
+        //Create Device-list dynamically
+        for(let item of data){
+            var device = document.createElement("div");
+            var close = document.createElement("a");
+            close.innerHTML = `&#10006;`;
+            device.textContent = item.device;
+            modal.appendChild(device);
+            device.appendChild(close);
+            device.classList.add("device-name");
+            close.classList.add("remove-device");
+            close.onclick = function(){
+                removeDevice(item.device);
+            }
+        }
+        var btn = document.createElement("button");
+        modal.appendChild(btn);
+        btn.classList.add("add-device");
+        btn.innerHTML = `&#10010;`;
+        btn.onclick = getAddDeviceContainer;
+    })
+}
+
+function closeModal(){
+    var modal = document.querySelector("#modal");
+    modal.style.display = "none";
+}
+
+function closeAddDevice(){
+
 }

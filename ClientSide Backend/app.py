@@ -1,9 +1,13 @@
 import json
+
+import requests
 from decider import *
 from flask import Flask, request
 from flask_cors import CORS
 from os import startfile
+import sys
 
+# sys.stdout = sys.stderr = open('log.txt', 'w+')
 
 app = Flask(__name__)
 CORS(app)
@@ -110,6 +114,34 @@ def app_executer():
         return "Success"
     except:
         return "Fail"
+
+@app.route('/get-devices', methods = ['GET'])
+def getDevices():
+    f = open("cookie.txt", "r")
+    text = f.read()
+    text = text.split(" ")
+    print(text)
+    try:
+        data = json.dumps({"username": text[0]})
+        res = requests.post("http://192.168.43.204:8000/chatbot/get-devices", data=data).text
+    except:
+        res = list()
+    return res
+
+@app.route('/addDevice', methods = ['POST'])
+def addDevice():
+    req_data = request.data
+    req_data = req_data.decode('utf-8')
+    data = eval(req_data)
+    f = open("cookie.txt", "r")
+    text = f.read()
+    text = text.split(" ")
+    try:
+        data = json.dumps({"username": text[0], "deviceName" : data["name"], "deviceIp" : data["ip"]})
+        res = requests.post("http://192.168.43.204:8000/chatbot/add-device", data=data).text
+    except:
+        res = {"success" : False, "message" : "Cannot register device."}
+    return res
 
 
 if __name__ == '__main__':

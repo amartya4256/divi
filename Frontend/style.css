@@ -1,14 +1,8 @@
 /*Multi app handler*/
-#logotemp{
-    position : fixed;
-    width: 40%;
-    //bottom : 27%;
-    top : 30%;
-    left : 28%;
-    float : center;
-    margin-top: 0px;
+body{
+    min-width:800px;
+    width: auto !important;
 }
-
 
 
 #logo{
@@ -176,11 +170,12 @@ height: 7%;
     border-radius : 25px;
     border-width : 1px;
     border-color : #ff1111;
-    height : 65%;
+    max-height : 50px;
+    height : 100%;
     width : 40%;
     bottom : 10px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .search{
@@ -386,7 +381,6 @@ input:checked + .slider:before {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-
 
 
 

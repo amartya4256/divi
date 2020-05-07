@@ -4,7 +4,7 @@ from io import BytesIO
 from decider import decide_type
 
 #virtualenv v.16.1.0.
-#install with pyinstaller --onefile --hidden-import=pyttsx3.drivers --hidden-import=pyttsx3.drivers.sapi5 remote_server.py
+#install with pyinstaller --onefile --hidden-import=pyttsx3.drivers --hidden-import=pyttsx3.drivers.sapi5 --noconsole remote_server.py --icon=divi_logo.ico
 #Put dist exe in the same directory as of regex
 #For no console:
 
@@ -27,7 +27,10 @@ def runserver():
             content_length = int(self.headers['Content-Length'])
             body = self.rfile.read(content_length)
             query = body.decode('utf-8')
-            res = decide_type(query)
+            if query == "YOU_WILL_NEVER_KNOW$*@#":
+                res = "true"
+            else:
+                res = decide_type(query)
             try:
                 res = res.encode()
             except:

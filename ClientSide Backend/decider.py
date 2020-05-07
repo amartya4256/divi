@@ -59,7 +59,7 @@ def takecommand():
         return query
     except Exception as e:
 
-        print("say that again please...")
+        print("say that again please...", e)
         return None
 
 def decide_type(query):
@@ -74,16 +74,18 @@ def decide_type(query):
         text = text.split(" ")[0]
 
 #################### Requests Database to check if remote execution demanded ####################
-
-        data_req = requests.post('http://192.168.43.204:8000/chatbot/database', data = text)
-        data_res = eval(data_req.text.replace("'", '"'))
-        for device in data_res['devices']:
-            if device in query:
-                exec_data = {'username' : text, 'query' : query, "dev_name" : device}
-                exec_req = requests.post('http://192.168.43.204:8000/chatbot/remoteexecuter', data = str(exec_data))
-                if exec_req.text != "Fail" :
-                    print("remoting")
-                    return exec_req.text
+        try:
+            data_req = requests.post('http://192.168.43.204:8000/chatbot/database', data = text, timeout = 1)
+            data_res = eval(data_req.text.replace("'", '"'))
+            for device in data_res['devices']:
+                if device in query:
+                    exec_data = {'username' : text, 'query' : query, "dev_name" : device}
+                    exec_req = requests.post('http://192.168.43.204:8000/chatbot/remoteexecuter', data = str(exec_data))
+                    if exec_req.text != "Fail" :
+                        print("remoting")
+                        return exec_req.text
+        except:
+            pass
 
 ##################### If recognized as local system command #####################
 
