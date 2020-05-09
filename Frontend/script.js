@@ -12,6 +12,10 @@
 
 get_saved_state();
 
+function rota() {
+    $(".rotate").toggleClass("down");
+}
+
 var today = new Date();
 var time = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '' ) + today.getMinutes();
 const micOn = new Audio('resources/micOn.wav');
