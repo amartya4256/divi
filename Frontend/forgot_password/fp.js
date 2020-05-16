@@ -1,4 +1,5 @@
 function forgotPassword(){
+    document.querySelector("#message").innerHTML = `Verifying...`;
     var email = document.querySelector("#email").value;
     var data = {
         email : email
