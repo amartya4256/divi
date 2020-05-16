@@ -32,7 +32,7 @@
 <div id="id01" class="modal">
   <div class="modal-content animate">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id01').style.display='none'" class="close">&times;</span>
       <img src="log.png" alt="Avatar" class="log" width="100px" height="100px">
     </div>
 
@@ -42,8 +42,8 @@
 
       <label for="psw"><b>Password</b></label>
       <input type="password" id = "pwd" placeholder="Enter Password" name="password" required onkeypress="entersubmit()">
-      <p id = 'response' style = "color : red"></p>
         <button type="submit" onclick="submit_data()">Login</button>
+        <a id = 'response' style = "color : red"></a>
         <button type="forgot password" onclick="window.location.href = 'sign_up/signup.html';">Sign Up</button>
         <span class="psw highlight-front"><a href="forgot_password/forgotpassword.html">Forgot password?</a></span>
     </div>

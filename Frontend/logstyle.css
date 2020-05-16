@@ -55,6 +55,7 @@ img.avatar {
 }
 
 .psw {
+  overflow: hidden;
   float: right;
   padding-top: 16px;
 }
@@ -77,10 +78,10 @@ img.avatar {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 12% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: 2% auto 12% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   max-width: 320px;/* Could be more or less, depending on screen size */
-  max-height: 490px;
+  max-height: 485px;
   width: 100%;
   height: 100%;
 }

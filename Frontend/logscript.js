@@ -22,7 +22,6 @@ document.getElementById('id01').style.display='block';
 
 
 function submit_data() {
-
     var name = document.getElementById("name").value;
     var pwd = document.getElementById("pwd").value;
     console.log(name, pwd)
