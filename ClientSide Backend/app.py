@@ -143,6 +143,33 @@ def addDevice():
         res = {"success" : False, "message" : "Cannot register device."}
     return res
 
+@app.route('/removeDevice', methods = ['POST'])
+def removeDevice():
+    data = eval(request.data.decode('utf-8'))
+    f = open("cookie.txt", "r")
+    text = f.read()
+    text = text.split(" ")
+    try:
+        data = json.dumps({"username": text[0], "deviceName" : data["name"]})
+        res = requests.post("http://192.168.43.204:8000/chatbot/remove-device", data=data).text
+    except:
+        res = {"success" : False, "message" : "Cannot remove device."}
+    return res
+
+@app.route("/forgot-password", methods = ["POST"])
+def forgotpassword():
+    query= request.data
+    query = eval(query.decode('utf-8'))
+    print(query)
+
+    url = 'http://192.168.43.204:8000/chatbot/forgot-password'
+    query = json.dumps({'field': query})
+    try:
+        res = requests.post(url, data=query).text
+        print(res)
+    except:
+        res = {"message" : "Cannot connect to server."}
+    return res
 
 if __name__ == '__main__':
     app.run()
