@@ -20,7 +20,7 @@ function signup(){
                     return false;
     }
     else{
-        fetch("http://127.0.0.1:5000/sign-up", {
+        fetch("http://127.0.0.1:5000/signup", {
             method : 'POST',
             body : JSON.stringify(data)
         }).then((response) => response.json())

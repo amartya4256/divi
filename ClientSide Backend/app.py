@@ -171,5 +171,21 @@ def forgotpassword():
         res = {"message" : "Cannot connect to server."}
     return res
 
+@app.route("/signup", methods = ["POST"])
+def signup():
+    query = request.data
+    query = eval(query.decode('utf-8'))
+    print(query)
+
+    url = 'http://192.168.43.204:8000/chatbot/sign-up'
+    query = json.dumps(query)
+    try:
+        res = requests.post(url, data=query).text
+        print(res)
+    except:
+        res = {"message" : "Cannot connect to server."}
+    return res
+
+
 if __name__ == '__main__':
     app.run()

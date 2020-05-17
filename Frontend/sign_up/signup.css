@@ -13,6 +13,18 @@ body {
   font-weight: 300;
 }
 
+.row-container{
+    display : flex;
+    flex-direction : row;
+    margin : 5px;
+}
+
+#message{
+    margin-top : 33px;
+    color : red;
+    margin-left : 10px;
+}
+
 #login-box {
   position: relative;
   margin: 10% auto 15% auto;
