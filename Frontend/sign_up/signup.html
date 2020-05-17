@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="signup.css">
     <link rel="stylesheet" href="../style.css">
+    <script language="JavaScript" src="signup.js"></script>
 
 </head>
 <body>
@@ -13,13 +14,13 @@
     <div class="left">
       <h1>Sign up</h1>
 
-        <input type="text" name="name" placeholder="Name" />
-      <input type="text" name="username" placeholder="Username" />
-      <input type="text" name="email" placeholder="E-mail" />
-      <input type="password" name="password" placeholder="Password" />
-      <input type="password" name="password2" placeholder="Retype password" />
+        <input type="text" name="name" placeholder="Name" id = "Name" />
+      <input type="text" name="username" placeholder="Username" id = "Username" />
+      <input type="text" name="email" placeholder="E-mail" id = "Email"/>
+      <input type="password" name="password" placeholder="Password" id = "Password" />
+      <input type="password" name="password2" placeholder="Retype password" id = "Password2"/>
 
-      <input type="submit" name="signup_submit" value="Sign me up" />
+      <input type="submit" name="signup_submit" value="Sign me up" onclick="signup()" />
     </div>
 
     <div class="right">
@@ -31,6 +32,7 @@
      </div>
       <div class="or">OR</div>
   </div>
+    <p id = "message"></p>
 </div>
 
 </body>
