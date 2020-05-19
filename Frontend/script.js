@@ -411,8 +411,18 @@ function app_executer(path, key){
 //}
 
 function getModal(){
+    var over = document.querySelector("#overc");
+    over.style.display = "none";
     getDevices();
     document.querySelector("#modal").style.display = "block";
+    document.querySelector(".hamburger").style.pointerEvents = "none";
+
+        //escapelistener
+        $(document).keydown(function(y){
+        if(y.keyCode == 27 && $("#modal")[0].style.display == "block"){
+            closeModal();
+        }
+    });
 }
 
 async function getDevices(){
@@ -444,9 +454,30 @@ async function getDevices(){
 
 function closeModal(){
     var modal = document.querySelector("#modal");
+    var aboutmodal = document.querySelector("#about");
     modal.style.display = "none";
+    aboutmodal.style.display = "none";
+    document.querySelector("#overc").style.display = "block";
+    document.querySelector(".hamburger").style.pointerEvents = "auto";
+
 }
 
 function closeAddDevice(){
+
+}
+
+
+function about(){
+    var over = document.querySelector("#overc");
+    over.style.display = "none";
+    document.querySelector("#about").style.display = "block";
+    document.querySelector(".hamburger").style.pointerEvents = "none";
+
+    //escape listener
+    $(document).keydown(function(y){
+        if(y.keyCode == 27 && $("#about")[0].style.display == "block"){
+            closeModal();
+        }
+    });
 
 }

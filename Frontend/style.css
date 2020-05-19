@@ -64,6 +64,7 @@ body{
 
 /* Position the content inside the overlay */
 .overlay-content {
+  display: block;
   position: relative;
   top: 25%; /* 25% from the top */
   width: 100%; /* 100% width */
@@ -83,7 +84,7 @@ body{
 
 /* When you mouse over the navigation links, change their color */
 .overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
+  color: #ba2229;
 }
 
 /* Position the close button (top right corner) */
@@ -331,11 +332,11 @@ height: 7%;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #ba2229;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #ba2229;
 }
 
 input:checked + .slider:before {
@@ -352,8 +353,6 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-
-
 
 
 /* For the multi matcher apps */

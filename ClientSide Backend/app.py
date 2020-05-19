@@ -4,7 +4,9 @@ import requests
 from decider import *
 from flask import Flask, request
 from flask_cors import CORS
+from flask_mail import Mail
 from os import startfile
+
 import sys
 
 # sys.stdout = sys.stderr = open('log.txt', 'w+')
@@ -12,6 +14,7 @@ import sys
 app = Flask(__name__)
 CORS(app)
 
+#app.config.from_pyfile('mailconfig.cfg')
 
 ######################## Endpoint to activate microphone to speak ######################
 
@@ -185,6 +188,7 @@ def signup():
     except:
         res = {"message" : "Cannot connect to server."}
     return res
+
 
 
 if __name__ == '__main__':

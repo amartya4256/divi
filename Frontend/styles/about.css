@@ -1,0 +1,69 @@
+.aboutmodal{
+    display: none;
+    z-index: 1;
+    position: fixed;
+    max-height: 70%;
+    max-width: 80%;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-headerabout{
+    display : flex;
+    flex-direction : row;
+    padding : 5px;
+    text-align : center;
+}
+
+.modal-contentabout{
+    max-height : 250px;
+    height : 100%;
+    color : white;
+    font-family : 'Montserrat', sans-serif;
+}
+
+
+.header-contentabout{
+    margin: 0 auto;
+    width : 300px;
+    color : white;
+    font-family : 'Montserrat', sans-serif;
+}
+
+#circle{
+    position: relative;
+    background-size: cover;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+#circle div{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 50%;
+    background: black;
+    color: white;
+    font-family: sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: visibility 0s, opacity 0.5s linear;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+
+#circle:hover{
+    cursor: pointer;
+}
+
+#circle:hover div{
+    width: 150px;
+    padding: 8px 15px;
+    visibility: visible;
+    opacity: 0.7;
+}

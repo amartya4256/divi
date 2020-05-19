@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles/add-device-style.css">
     <link rel="stylesheet" href="styles/speak.css">
+    <link rel="stylesheet" href="styles/about.css">
     <link rel="stylesheet" href="styles/modal.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -44,8 +45,8 @@
 
 
             <!-- Overlay content -->
-            <div class="overlay-content">
-                <p style = "color: #818181">Turn ON "Time To Talk"</p>
+            <div class="overlay-content" id="overc">
+                <p style = "color: #818181; cursor: pointer">Turn ON "Time To Talk"</p>
                 <label class="switch">
 
                 <input type="checkbox" id = "state" onchange="doalert(this)">
@@ -53,7 +54,7 @@
                 </label>
                 <a href="#" onclick="navigator(); rota();">Home</a>
                 <a href="#" onclick="getModal()" id = "myDevices">My Devices</a>
-                <a href="#">About D.I.V.I.</a>
+                <a href="#" onclick = "about()">About D.I.V.I.</a>
                 <a href='' onclick = "logout()">Logout</a>
             </div>
 
@@ -139,7 +140,54 @@
           </div>
         </div>
 
-</div>
+        <div class="aboutmodal centered" id="about">
+            <div class = "modal-headerabout">
+                <h1 class = "header-contentabout bounceIn">What's D.I.V.I.</h1>
+                <h4 class = "close-modal" onclick = "closeModal()">&#10006;</h4>
+            </div><br>
+            <div class="modal-contentabout bounceIn">
+                <p align="middle">
+                    D.I.V.I. stands for Desktop Imbrutization using Virtual Intellect. It is a virtual assistant
+                    capable to run on any machine irrespective of platform. D.I.V.I. is mainly developed in
+                    Python &amp; Java and, is a platform independent software capable of providing you virtual
+                    support in almost every field, such as, home automation, chatbot, device management,
+                    remote access to any of your device, managing your virtual information and resources, etc.
+                </p>
+                <br>
+                <p align="middle">
+                    D.I.V.I. is a software that can be installed on either laptop or mobile phone, running any OS,
+                    such as, Windows, IOS, Android, Linux, etc. D.I.V.I. is an easy-to-use handy application. It
+                    features a familiar and well-thought-out, an attractive interface, combined with high virtual
+                    intelligence.
+                </p><br>
+                <div align="middle">
+                <h1>Meet the Creators</h1>
+                    <div id="circle">
+                        <img id="circle" src="styles/A4.jpg">
+                        <div><p>Amartya Parijat</p></div>
+                    </div>
+                    <div id="circle">
+                        <img id="circle" src="styles/A5.jpg">
+                        <div><p>Aman Mishra</p></div>
+                    </div>
+                    <div id="circle">
+                        <img id="circle" src="styles/A1.jpg">
+                        <div><p align="middle">Arihant Shankyan</p></div>
+                    </div>
+                    <div id="circle">
+                        <img id="circle" src="styles/A2.jpg">
+                        <div><p>Akash Rao</p></div>
+                    </div>
+                    <div id="circle">
+                        <img id="circle" src="styles/A3.jpg">
+                        <div><p>Utkarsh Saxena</p></div>
+                    </div>
+                </div>
+            </div>
+    <!--            <div id= "title"><h1 class="bounceIn" style="color: white">About</h1></div>-->
+        </div>
+
+    </div>
 
     <script language="javascript" src = "script.js"></script>
     <script language="javascript" src = "scripts/addDevice.js"></script>
@@ -150,6 +198,9 @@
         });
 
     $(document).keydown(function(e){
+        if($(".hamburger")[0].style.pointerEvents == "none"){
+            return;
+        }
         if(e.keyCode == 27 && $("#myNav")[0].style.height == "100%"){
             closeNav();
             $(".rotate").toggleClass("down");

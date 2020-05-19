@@ -186,6 +186,25 @@ button.social-signin.google {
     background-image: linear-gradient(to bottom right, rgba(255,132,0,1.0) , rgba(97,0,0,1.0) 20%, rgba(0,3,54, 1.0) 90%);
 }
 
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
