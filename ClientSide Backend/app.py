@@ -4,12 +4,11 @@ import requests
 from decider import *
 from flask import Flask, request
 from flask_cors import CORS
-from flask_mail import Mail
-from os import startfile
+from os import startfile, devnull
 
 import sys
 
-# sys.stdout = sys.stderr = open('log.txt', 'w+')
+sys.stdout = sys.stderr = open(devnull, 'w+')
 
 app = Flask(__name__)
 CORS(app)

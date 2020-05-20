@@ -19,28 +19,6 @@ def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
-
-def auto_listen():
-
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("listening....")
-        while True:
-            audio = r.adjust_for_ambient_noise(source)
-            #r.pause_threshold = 1
-            audio = r.listen(source)
-            try:
-                query = r.recognize_google(audio,language='en-in')
-                query = query.lower()
-                print(query)
-                if "yo yo" in query:
-                    speak("yes tell me")
-                    decide_speak()
-            except:
-                pass
-
-
-
 def takecommand():
     '''take input as speech and
     gives string in return'''

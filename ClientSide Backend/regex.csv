@@ -4,4 +4,4 @@ regex,key
 (\w|\s|\W)*(open|start)(\w|\s|\W)*(browser|web browser)(\w|\s|\W)*,browser
 (\w|\s|\W)*(open|start|play)(\w|\s|\W)*(music|spotify|groove)(\w|\s|\W)*,music
 (\w|\s|\W)*(open|start|play|switch|launch|activate|get)(\w|\s|\W)*,start_app
-
+(\w|\s|\W)*(what|why|when|how|who|which|whose|whom|search|google)(\w|\s|\W)*,search

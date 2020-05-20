@@ -25,6 +25,7 @@ function addDevice(deviceName, deviceIp){
         if(data.success == true){
             document.querySelector("#message").innerHTML = data.message;
             document.querySelector("#addDeviceBtn").disabled = true;
+	    getDevices();
         }
         else{
             document.querySelector("#message").innerHTML = data.message;
@@ -34,5 +35,12 @@ function addDevice(deviceName, deviceIp){
 }
 
 function removeDevice(device){
-    fetch("http://127.0.0.1:5000/removeDevice")
+    fetch("http://127.0.0.1:5000/removeDevice", {
+        method : 'post',
+        body : JSON.stringify({
+            "name" : device
+        })
+    }).then((response)=> {
+        getDevices();
+    })
 }

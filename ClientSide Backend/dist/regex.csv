@@ -1,0 +1,7 @@
+regex,key
+(\w|\s|\W)*(open|start|click)(\w|\s|\W)*(camera|pic|picture)(\w|\s|\W)*,picture
+(\w|\s|\W)*(open|send|compose|write)(\w|\s|\W)*(mail|email)(\w|\s|\W)*,email
+(\w|\s|\W)*(open|start)(\w|\s|\W)*(browser|web browser)(\w|\s|\W)*,browser
+(\w|\s|\W)*(open|start|play)(\w|\s|\W)*(music|spotify|groove)(\w|\s|\W)*,music
+(\w|\s|\W)*(open|start|play|switch|launch|activate|get)(\w|\s|\W)*,start_app
+(\w|\s|\W)*(what|why|when|how|who|which|whose|whom|search|google)(\w|\s|\W)*,search
