@@ -29,6 +29,8 @@ def music():
     return "Playing Music"
 
 def googleSearch(query):
+    query = query.replace("google", "", 1)
+    query = query.replace("search", "", 1)
     webbrowser.open("https://google.com/search?q=" + query)
 
 ######################### Executes command on the basis of regex matched ###########################
