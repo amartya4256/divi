@@ -1,5 +1,6 @@
-# divi
+# DIVI - A.I. Assistant
 WHAT IS D.I.V.I.? 
+
 D.I.V.I. stands for Desktop Imbrutization using Virtual Intellect. It is a virtual assistant capable of running on any machine irrespective of platform. D.I.V.I. is mainly developed in Python & Java and is a platform independent software capable of providing you virtual support in almost every field, such as, home automation, chatbot, device management, remote access to any of your device, managing your virtual information and resources, etc. It can be used in the corporate sector to break business barriers, as it is readily available to take the responsibility of the admin system.
 D.I.V.I. is a software that can be installed on either laptop or mobile phone, running any OS, such as, Windows, IOS, Android, Linux, etc. D.I.V.I. is an easy-to-use handy application. It features a familiar and well-thought-out, an attractive interface, combined with high virtual intelligence. The custom chatbot of D.I.V.I. can easily compel its user in a long conversation.
 D.I.V.I. has 3 major modules :
